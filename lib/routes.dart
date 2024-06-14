@@ -3,6 +3,8 @@ import 'package:kaleela/views/auth/binding.dart';
 import 'package:kaleela/views/auth/index.dart';
 import 'package:kaleela/views/choose_language/binding.dart';
 import 'package:kaleela/views/choose_language/index.dart';
+import 'package:kaleela/views/example/binding.dart';
+import 'package:kaleela/views/example/index.dart';
 import 'package:kaleela/views/splash/binding.dart';
 import 'package:kaleela/views/splash/index.dart';
 import 'package:kaleela/views/topics/binding.dart';
@@ -37,6 +39,11 @@ abstract class AppRouting {
           page: () => TopicsPage(),
           binding: TopicsBinding(),
         ),
+        GetPage(
+          name: Pages.example.value,
+          page: () => ExamplePage(),
+          binding: ExampleBinding(),
+        ),
       ];
 }
 
@@ -46,6 +53,7 @@ enum Pages {
   userMode,
   auth,
   topics,
+  example,
 }
 
 extension PagesExtension on Pages {
@@ -61,6 +69,8 @@ extension PagesExtension on Pages {
         return '/auth';
       case Pages.topics:
         return '/topics';
+      case Pages.example:
+        return '/example';
       default:
         throw 'unnamed route';
     }
@@ -80,7 +90,8 @@ abstract class Navigation {
         return Pages.auth;
       case '/topics':
         return Pages.topics;
-
+      case '/example':
+        return Pages.example;
       default:
         return null;
     }

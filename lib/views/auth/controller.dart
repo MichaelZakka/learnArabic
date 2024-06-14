@@ -8,5 +8,4 @@ class AuthController extends GetxController{
     login.toggle();
     update();
   }
-  
 }
