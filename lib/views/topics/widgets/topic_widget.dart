@@ -4,14 +4,13 @@ import 'package:get/get.dart';
 import 'package:kaleela/res/colors.dart';
 import 'package:kaleela/res/styles.dart';
 import 'package:kaleela/views/topics/controller.dart';
+import 'package:kaleela/views/topics/widgets/lesson_widget.dart';
 
 class Topic_Widget extends StatelessWidget {
   final String letter;
   final int id;
-  final void Function()? onTap;
 
-  const Topic_Widget(
-      {super.key, required this.letter, required this.id, required this.onTap});
+  const Topic_Widget({super.key, required this.letter, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,9 @@ class Topic_Widget extends StatelessWidget {
       return Column(
         children: [
           GestureDetector(
-            onTap: onTap,
+            onTap: () {
+              _.toggleVar(isExpanded);
+            },
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
               child: Row(
@@ -70,23 +71,20 @@ class Topic_Widget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      _.toggleVar(isExpanded);
-                    },
-                    child: Container(
-                      width: 55.r,
-                      height: 55.r,
-                      decoration: BoxDecoration(
-                        color: cyan,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Icon(
-                          Icons.keyboard_arrow_down,
-                          color: white,
-                          size: 45.r,
-                        ),
+                  Container(
+                    width: 55.r,
+                    height: 55.r,
+                    decoration: BoxDecoration(
+                      color: cyan,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: Icon(
+                        isExpanded.value
+                            ? Icons.keyboard_arrow_up
+                            : Icons.keyboard_arrow_down,
+                        color: white,
+                        size: 45.r,
                       ),
                     ),
                   )
@@ -95,10 +93,10 @@ class Topic_Widget extends StatelessWidget {
             ),
           ),
           isExpanded.value
-              ? Container(
-                  width: 45,
-                  height: 45,
-                  color: red,
+              ? LessonWidget(
+                  id: id,
+                  letter: letter,
+                  onTap: () {},
                 )
               : SizedBox()
         ],

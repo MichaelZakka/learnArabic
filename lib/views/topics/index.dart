@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:kaleela/res/colors.dart';
-import 'package:kaleela/views/topics/widgets/topic_widget.dart';
+import 'package:kaleela/views/topics/widgets/lesson_widget.dart';
 import 'package:kaleela/widgets/appBars/cusotm_appBar.dart';
 
 class TopicsPage extends StatelessWidget {
@@ -45,21 +44,17 @@ class TopicsPage extends StatelessWidget {
         appBar: CustomAppbar(color: cyan),
         endDrawer: Drawer(),
         body: ListView.builder(
-          itemCount: alphabet.length,
+          itemCount: 4,
           itemBuilder: (context, index) {
-            RxBool isExpanded = false.obs;
             return Column(
               children: [
-                Topic_Widget(
-                  letter: alphabet[index],
+                12.r.verticalSpace,
+                LessonWidget(
+                  onTap: (){},
                   id: index + 1,
-                  onTap: (){
-                    print(isExpanded);
-                  }
+                  letter: alphabet[index],
                 ),
-                SizedBox(
-                  height: 25.r,
-                ),
+                12.r.verticalSpace,
               ],
             );
           },
